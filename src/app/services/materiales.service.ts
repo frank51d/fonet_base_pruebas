@@ -14,7 +14,7 @@ import { Plataforma } from '../models/plataforma';
 })
 export class MaterialesService {
 
-  API_URI = 'https://fonet-df.herokuapp.com/api';
+  API_URI = 'https://fonetdf.herokuapp.com/api';
 
   constructor(private http:HttpClient) { }
 
