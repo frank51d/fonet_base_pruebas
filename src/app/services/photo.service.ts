@@ -7,7 +7,7 @@ import { Photo } from '../models/Photo'
 })
 export class PhotoService {
 
-  API_URI = "https://fonetdf.herokuapp.com/api"
+  API_URI = "http://localhost:3000/api"
 
   constructor(
     private _http: HttpClient
