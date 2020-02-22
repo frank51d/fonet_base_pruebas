@@ -12,7 +12,6 @@ import { MatToolbarModule, MatIconModule, MatCardModule, MatButtonModule, MatPro
 //servicios
 import { ClientesService } from './services/clientes.service';
 import { MaterialesService } from './services/materiales.service';
-import { ExcelService } from './services/excel.service'
 import { DatePipe } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -117,8 +116,7 @@ const routes: Routes = [
     MaterialesService,
     DatePipe,
     interceptorProvider,
-    guard,
-    ExcelService
+    guard
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
