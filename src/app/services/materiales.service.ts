@@ -5,6 +5,7 @@ import { ordenServicio } from '../models/orden'
 import { updateEstatusOrden } from '../models/updateEstatusOrden'
 import { ordenCerrada } from '../models/ordenCerrada'
 import { filtrado } from '../models/filtrado'
+import { filtrado2 } from '../models/filtrado2'
 import { Observable } from 'rxjs';
 import { PlatformLocation } from '@angular/common';
 import { Plataforma } from '../models/plataforma';
@@ -14,7 +15,7 @@ import { Plataforma } from '../models/plataforma';
 })
 export class MaterialesService {
 
-  API_URI = 'https://localhost:3000/api';
+  API_URI = 'https://fonetdf.herokuapp.com/api';
 
   constructor(private http:HttpClient) { }
 
@@ -156,7 +157,11 @@ export class MaterialesService {
   //reportes
 
   listReporte(filtrado){
-    return this.http.post(`${this.API_URI}/reportes`, filtrado);
+    return this.http.post(`${this.API_URI}/reportes/full`, filtrado);
+  }
+
+  listReporte2(filtrado2){
+    return this.http.post(`${this.API_URI}/reportes/fecha`, filtrado2);
   }
 
 }

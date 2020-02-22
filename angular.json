@@ -32,6 +32,9 @@
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "node_modules/popper.js/dist/umd/popper.min.js",
+              "src/assets/tableHTMLExport.js",
+              "src/assets/jspdf.js",
+              "src/assets/jquery-2.1.3.js",
               "src/paint.js",
               "src/ezcri.js"
             ]
@@ -107,6 +110,9 @@
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "node_modules/popper.js/dist/umd/popper.min.js",
+              "src/assets/tableHTMLExport.js",
+              "src/assets/jspdf.js",
+              "src/assets/jquery-2.1.3.js",
               "src/paint.js",
               "src/ezcri.js"
             ]

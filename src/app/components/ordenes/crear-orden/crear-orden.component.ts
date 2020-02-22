@@ -168,7 +168,7 @@ export class CrearOrdenComponent implements OnInit {
       err => console.error(err)
     )
     console.log(this.ordenServicio)
-    alert('exito');
+    alert('Orden creada con exito!');
 
     this.router.navigate(['/ordenes/listar']);
 

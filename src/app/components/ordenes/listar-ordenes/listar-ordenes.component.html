@@ -10,16 +10,25 @@
         <thead>
           <tr class="text-center">
             <th scope="col" class="text-center" style="width: 30px;">ID</th>
-            <th scope="col" class="text-center" style="width: 120px;">Estatus<br><input type="text" class="form-control mt-1" [(ngModel)]="filtrado.estatus"></th>
-            <th scope="col" class="text-center" style="width: 120px;">Tipo<br><input type="text" class="form-control mt-1" [(ngModel)]="filtrado.tipo"></th>
-            <th scope="col" class="text-center" style="width: 130px;">Fecha Asig.<br><input type="text" class="form-control mt-1"></th>
-            <th scope="col" class="text-center" style="width: 140px;">Técnico Asig.<br><input type="text" class="form-control mt-1" [(ngModel)]="filtrado.usuario"></th>
-            <th scope="col" class="text-center" style="width: 230px;">Cliente<br><input type="text" class="form-control mt-1" [(ngModel)]="filtrado.cliente"></th>
+            <th scope="col" class="text-center" style="width: 120px;">Estatus<br></th>
+            <th scope="col" class="text-center" style="width: 120px;">Tipo<br></th>
+            <th scope="col" class="text-center" style="width: 130px;">Fecha Asig.</th>
+            <th scope="col" class="text-center" style="width: 140px;">Técnico Asig.<br></th>
+            <th scope="col" class="text-center" style="width: 230px;">Cliente<br></th>
             <th scope="col" class="text-center" style="width: 100px;">Acción</th>
+          </tr>
+          <tr class="text-center">
+            <th scope="col" class="text-center" style="width: 30px;"></th>
+            <th scope="col" class="text-center" style="width: 120px;"><input type="text" class="form-control mt-1" [(ngModel)]="filtrado.estatus"></th>
+            <th scope="col" class="text-center" style="width: 120px;"><input type="text" class="form-control mt-1" [(ngModel)]="filtrado.tipo"></th>
+            <th scope="col" class="text-center" style="width: 130px;"></th>
+            <th scope="col" class="text-center" style="width: 140px;"><input type="text" class="form-control mt-1" [(ngModel)]="filtrado.usuario"></th>
+            <th scope="col" class="text-center" style="width: 230px;"><input type="text" class="form-control mt-1" [(ngModel)]="filtrado.cliente"></th>
+            <th scope="col" class="text-center" style="width: 100px;"></th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let orden of ordenes">
+          <tr *ngFor="let orden of ordenes | paginate: { itemsPerPage: 10, currentPage: p }">
             <th scope="row">{{orden.idorden}}</th>
             <td class="text-center">
               <h5><span class="badge mt-2"
@@ -40,6 +49,7 @@
           </tr>
         </tbody>
       </table>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
   </div>
 </div>

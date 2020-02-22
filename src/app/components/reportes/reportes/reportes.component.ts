@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MaterialesService } from 'src/app/services/materiales.service';
 import { ComunService } from '../../../services/comun.service';
 import { DatePipe } from '@angular/common';
-
+import { ExcelService } from '../../../services/excel.service'
+declare let jsPDF;
 
 @Component({
   selector: 'app-reportes',
@@ -22,11 +23,16 @@ export class ReportesComponent implements OnInit {
     fecha_reporte : '',
     fecha_asig : ''
   }
+  filtrado2: any = {
+    fecha_inicio : '',
+    fecha_fin : ''
+  }
 
   constructor(
     private _servicio: MaterialesService,
     private _comun: ComunService,
-    private _dates: DatePipe
+    private _dates: DatePipe,
+    private _excel: ExcelService
   ) { }
 
   ngOnInit() {
@@ -54,6 +60,16 @@ export class ReportesComponent implements OnInit {
     )
   }
 
+  buscar2(){
+    this._servicio.listReporte2(this.filtrado2).subscribe(
+      res => {
+        this.lista = res
+        console.log(res)
+      },
+      err => console.error(err)
+    )
+  }
+
   download(){
     for (let i = 0; i < this.lista.length; i++) {
       this.lista[i].nombres_cliente = this.lista[i].nombres_cliente.replace(/\,/g,"");
@@ -61,6 +77,10 @@ export class ReportesComponent implements OnInit {
       this.lista[i].fecha_asig = this._dates.transform(this.lista[i].fecha_asig, 'yyyy-MM-dd')
     }
     this._comun.downloadFile(this.lista, 'reporte');
+  }
+
+  exportAsXLSX():void {
+    this._excel.exportAsExcelFile(this.lista, 'reporte');
   }
 
 }

@@ -95,7 +95,7 @@
                             Memoria Fotográfica
                         </div>
                         <div class="card-body">
-                            <img class="mx-2 img-thumbnail rounded" *ngFor="let photo of photos" [src]="'http://localhost:3000/' + photo.imagePath" style="width: 180px; height: 200px;">
+                            <a href="http://localhost:3000/{{photo.imagePath}}" *ngFor="let photo of photos; index as i" target="_blank"><img class="mx-2 img-thumbnail rounded" [src]="'http://localhost:3000/' + photo.imagePath" style="width: 180px; height: 200px;"></a>
                         </div>
                     </div>
                 </div>

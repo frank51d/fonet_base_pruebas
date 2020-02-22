@@ -20,6 +20,8 @@ export class ListarOrdenesComponent implements OnInit {
     private activedRouter: ActivatedRoute
   ) { }
 
+  p : number = 1;
+
   ordenes_fecha: any = [];
   ordenes: any = [];
   estatus: any = "";

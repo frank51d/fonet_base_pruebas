@@ -4,6 +4,7 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule, ReactiveFormsModule } from  '@angular/forms';
 import { MatToolbarModule, MatIconModule, MatCardModule, MatButtonModule, MatProgressBarModule } from '@angular/material';
 
@@ -11,6 +12,7 @@ import { MatToolbarModule, MatIconModule, MatCardModule, MatButtonModule, MatPro
 //servicios
 import { ClientesService } from './services/clientes.service';
 import { MaterialesService } from './services/materiales.service';
+import { ExcelService } from './services/excel.service'
 import { DatePipe } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -107,14 +109,16 @@ const routes: Routes = [
     MatIconModule,  
     MatButtonModule,  
     MatCardModule,  
-    MatProgressBarModule  
+    MatProgressBarModule,
+    NgxPaginationModule
   ],
   providers: [
     ClientesService,
     MaterialesService,
     DatePipe,
     interceptorProvider,
-    guard
+    guard,
+    ExcelService
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

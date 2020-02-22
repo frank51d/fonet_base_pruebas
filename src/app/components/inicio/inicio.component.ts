@@ -4,7 +4,6 @@ import { Router, CanActivate } from '@angular/router';
 import { MaterialesService } from '../../services/materiales.service';
 import { TokenService } from '../../services/token.service';
 import { ComunService } from '../../services/comun.service';
-import { ChartsModule } from 'angular-bootstrap-md';
 
 @Component({
   selector: 'app-inicio',
@@ -104,7 +103,7 @@ export class InicioComponent implements OnInit {
             {
               type: 'doughnut',
               label: 'Test Chart',
-              backgroundColor: ['#4270FF', '#3C93E8', '#4ED5FF'],
+              backgroundColor: ['#4270FF', '#3C93E8', '#4ED5FF', '#3CE8E3'],
               data: [10, 3, 6],
               fill: false
             }

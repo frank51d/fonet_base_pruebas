@@ -34,6 +34,7 @@ export class DoinOrdenComponent implements OnInit {
   orden: any = [];
   materiales: any = [];
 
+  seleccion: string = "btn-primary";
   listaCompleta: any = [];
   listaFinal: any = [];
   //listaMaterialUti: MaterialUti = {
@@ -108,7 +109,7 @@ export class DoinOrdenComponent implements OnInit {
       )
     }
     this.subir();
-    this.router.navigate(['/ordenes/listar']);
+    this.router.navigate(['/inicio']);
   }
   cantidad = [];
   cantidad2 = [];
