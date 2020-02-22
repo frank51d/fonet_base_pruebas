@@ -79,8 +79,6 @@ export class ReportesComponent implements OnInit {
     this._comun.downloadFile(this.lista, 'reporte');
   }
 
-  exportAsXLSX():void {
-    this._excel.exportAsExcelFile(this.lista, 'reporte');
-  }
+  
 
 }
