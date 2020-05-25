@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MaterialesService } from 'src/app/services/materiales.service';
 import { ComunService } from '../../../services/comun.service';
 import { DatePipe } from '@angular/common';
-import { ExcelService } from '../../../services/excel.service'
-declare let jsPDF;
+import * as xlsx from 'xlsx';
 
 @Component({
   selector: 'app-reportes',
@@ -11,6 +10,8 @@ declare let jsPDF;
   styleUrls: ['./reportes.component.css']
 })
 export class ReportesComponent implements OnInit {
+
+  @ViewChild('epltable', { static: false }) epltable: ElementRef;
 
   var: string
   tipos: any= [];
@@ -31,8 +32,7 @@ export class ReportesComponent implements OnInit {
   constructor(
     private _servicio: MaterialesService,
     private _comun: ComunService,
-    private _dates: DatePipe,
-    private _excel: ExcelService
+    private _dates: DatePipe
   ) { }
 
   ngOnInit() {
@@ -79,6 +79,13 @@ export class ReportesComponent implements OnInit {
     this._comun.downloadFile(this.lista, 'reporte');
   }
 
+  exportToExcel() {
+    const ws: xlsx.WorkSheet =   
+    xlsx.utils.table_to_sheet(this.epltable.nativeElement);
+    const wb: xlsx.WorkBook = xlsx.utils.book_new();
+    xlsx.utils.book_append_sheet(wb, ws, 'Sheet1');
+    xlsx.writeFile(wb, 'epltable.xlsx');
+   }
   
 
 }

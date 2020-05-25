@@ -12,7 +12,7 @@ const cabecera = {headers: new HttpHeaders({'Content-Type': 'application/json'})
 })
 export class AuthService {
 
-  private authURL = 'https://fonet-login.herokuapp.com/api/auth/';
+  private authURL = 'http://localhost:1616/api/auth/';
   
   constructor(private httpClient: HttpClient) { }
 
