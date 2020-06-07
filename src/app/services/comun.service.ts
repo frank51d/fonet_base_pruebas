@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TokenService } from 'src/app/services/token.service';
-import { HttpClient, HttpEvent, HttpErrorResponse, HttpEventType } from  '@angular/common/http';  
-import { map } from  'rxjs/operators';
+import { HttpClient, HttpEvent, HttpErrorResponse, HttpEventType } from  '@angular/common/http';
 
 
 @Injectable({
@@ -13,7 +12,9 @@ export class ComunService {
   isLogin = false;
   roles: string[];
   authority: string;
+  userCurrent: string;
   SERVER_URL: string = "https://file.io/";
+  p: number = 1;
 
   constructor(private tokenService: TokenService, private httpClient: HttpClient) { }
 

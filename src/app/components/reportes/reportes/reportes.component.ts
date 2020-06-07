@@ -17,11 +17,14 @@ export class ReportesComponent implements OnInit {
   tipos: any= [];
   tecnicos: any= [];
   lista: any = [];
+  idmats: any = [];
+  mats: any = [];
+  mat: any = {};
   filtrado: any = {
     tipo : '',
     usuario : '',
     cliente : '',
-    fecha_reporte : '',
+    fecha_ejecucion : '',
     fecha_asig : ''
   }
   filtrado2: any = {
@@ -54,10 +57,36 @@ export class ReportesComponent implements OnInit {
     this._servicio.listReporte(this.filtrado).subscribe(
       res => {
         this.lista = res
-        console.log(res)
+        // console.log(res)
+        // this.matsByOrden();
       },
       err => console.error(err)
-    )
+    );
+  }
+
+  matsByOrden(){
+    // for (let i = 0; i < this.lista.length; i++) {
+    //   this.idmats[i]=this.lista[i].idorden;   
+    // }
+    // for (let j = 0; j < this.idmats.length; j++) {
+    //   this._servicio.getListar(this.idmats[j]).subscribe(
+    //     res => {
+    //       this.mat = res
+    //       console.log(this.mat)
+    //       // if (this.mat.idorden==this.lista[j].idorden){
+    //       //   this._servicio.getListar(this.lista[j].idorden).subscribe(
+    //       //     res => {
+    //       //       this.mats[j] = res;
+    //       //     }
+    //       //   )
+    //       // }else{
+    //       //   this.mats[j] = 0;
+    //       // }
+    //     }
+    //   )   
+    // }
+    // // console.log(this.idmats)
+    // // console.log(this.mats)
   }
 
   buscar2(){
@@ -73,7 +102,7 @@ export class ReportesComponent implements OnInit {
   download(){
     for (let i = 0; i < this.lista.length; i++) {
       this.lista[i].nombres_cliente = this.lista[i].nombres_cliente.replace(/\,/g,"");
-      this.lista[i].fecha_reporte = this._dates.transform(this.lista[i].fecha_reporte, 'yyyy-MM-dd')
+      this.lista[i].fecha_ejecucion = this._dates.transform(this.lista[i].fecha_ejecucion, 'yyyy-MM-dd')
       this.lista[i].fecha_asig = this._dates.transform(this.lista[i].fecha_asig, 'yyyy-MM-dd')
     }
     this._comun.downloadFile(this.lista, 'reporte');

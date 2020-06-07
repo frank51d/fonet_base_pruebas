@@ -118,6 +118,10 @@ export class MaterialesService {
     console.log("orden creada");
   }
 
+  deleteOrden(id: number){
+    return this.http.delete(`${this.API_URI}/ordenes/${id}`);
+  }
+
   //charts
 
   geByTecnico(){

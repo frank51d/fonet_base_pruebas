@@ -103,7 +103,7 @@ export class InicioComponent implements OnInit {
             {
               type: 'doughnut',
               label: 'Test Chart',
-              backgroundColor: ['#4270FF', '#3C93E8', '#4ED5FF', '#3CE8E3'],
+              backgroundColor: ['#929292', '#3C93E8', '#4ED5FF', '#3CE8E3'],
               data: [10, 3, 6],
               fill: false
             }

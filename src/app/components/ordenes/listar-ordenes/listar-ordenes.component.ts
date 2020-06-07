@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { MaterialesService } from '../../../services/materiales.service';
 import { DatePipe } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -12,20 +12,25 @@ import { ComunService } from '../../../services/comun.service';
 })
 export class ListarOrdenesComponent implements OnInit {
 
-
   constructor(
     private _servicio: MaterialesService,
     private _dates: DatePipe,
     private _comun: ComunService,
     private activedRouter: ActivatedRoute
   ) { }
-
-  p : number = 1;
-
+  
+  p: number;
   ordenes_fecha: any = [];
   ordenes: any = [];
   estatus: any = "";
   authority: string = "user";
+  toDelete: number = 0;
+  toAnular: number = 0;
+  orden : any = {
+    idestatus_orden : 6,
+    motivo_susp : ''
+  }
+  motivo_susp : string = "";
 
   filtrado: any = {
     estatus : "",
@@ -34,38 +39,32 @@ export class ListarOrdenesComponent implements OnInit {
     usuario : ""
   }
 
-  ngOnInit() {
-    const params = this.activedRouter.snapshot.params;
-    // this._servicio.getOrdenes().subscribe(
-    //  res => {
-    //    this.ordenes = res   
-    //    console.log(res)
-    //  },
-    //  err => console.error(err),
-    // );
-    //this._servicio.getByUser(params.user)
+ngOnInit() {
+  const params = this.activedRouter.snapshot.params;
 
-    this._comun.getCurrent();
+  this._comun.getCurrent();
 
-    if (this._comun.authority == 'admin') {
-      this._servicio.getOrdenes().subscribe(
+  if (this._comun.authority == 'admin') {
+    this._servicio.getOrdenes().subscribe(
+      res => {
+        this.ordenes = res
+        this.authority = 'admin'
+        console.log(this.ordenes)
+      }
+    )
+  } else { 
+    if (params.user) {
+      this._servicio.getByUser(params.user).subscribe(
         res => {
           this.ordenes = res
-          this.authority = 'admin'
-          console.log(this.ordenes)
-        }
-      )
-    } else { 
-      if (params.user) {
-        this._servicio.getByUser(params.user).subscribe(
-          res => {
-            this.ordenes = res
-            console.log(res)
-          },
-          err => console.error(err),
-        );
-      }
+          console.log(res)
+        },
+        err => console.error(err),
+      );
     }
+  }
+  this.p = this._comun.p
+  console.log(this.p)
 }
 
 buscar(){
@@ -76,5 +75,33 @@ buscar(){
     }
   )
 }
+
+deleteOrden(){
+ this._servicio.deleteOrden(this.toDelete).subscribe(
+   res => {
+     console.log(res);
+   },
+   err => console.log(err)
+ )
+ }
+
+ prev(){
+  this._comun.p = this.p
+ }
+
+ anular(){
+   this._servicio.getOneOrder(this.toAnular).subscribe(
+     res => {
+       this.orden.idestatus_orden = 6;
+       this.orden.motivo_susp = this.motivo_susp;
+       this._servicio.updateOrden(this.toAnular, this.orden).subscribe(
+         ret => {
+           console.log(ret)
+         },
+         err => console.error(err)
+       )
+     }
+   )
+ }
 
 }

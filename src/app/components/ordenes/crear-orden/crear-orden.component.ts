@@ -31,8 +31,8 @@ export class CrearOrdenComponent implements OnInit {
   myForm: FormGroup;
 
   ordenServicio: any = {
-    idestatus_orden: 1,
-    idtipo_orden: 0,
+    idestatus_orden: 0,
+    idtipo_orden: '',
     id: 0,
     nombres_cliente: '',
     telefono_cliente: '',
@@ -47,7 +47,9 @@ export class CrearOrdenComponent implements OnInit {
     hora_fin: 0,
     diagnostico_inicial: '',
     diagnostico_final: '',
-    coordenada: 0
+    coordenada: 0,
+    comentarios: '',
+    motivo_susp: ''
   }
 
 
@@ -160,13 +162,27 @@ export class CrearOrdenComponent implements OnInit {
     var newDate = this._dates.transform(date, 'yyyy-MM-dd');
     this.ordenServicio.fecha_reporte = newDate;
 
-    this._servicio.saveOrden(this.ordenServicio).subscribe(
-      res => {
-        console.log(res)
-        console.log(this.ordenServicio)
-      },
-      err => console.error(err)
-    )
+    if (this.ordenServicio.id==1 || this.ordenServicio.id==0) {
+      this.ordenServicio.id = 1
+      this.ordenServicio.idestatus_orden = 4;
+      this._servicio.saveOrden(this.ordenServicio).subscribe(
+        res => {
+          console.log(res)
+          console.log(this.ordenServicio)
+        },
+        err => console.error(err)
+      )
+    }else{
+      this.ordenServicio.idestatus_orden = 1;
+      this._servicio.saveOrden(this.ordenServicio).subscribe(
+        res => {
+          console.log(res)
+          console.log(this.ordenServicio)
+        },
+        err => console.error(err)
+      )
+    }
+
     console.log(this.ordenServicio)
     alert('Orden creada con exito!');
 

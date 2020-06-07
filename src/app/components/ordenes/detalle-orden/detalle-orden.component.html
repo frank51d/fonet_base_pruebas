@@ -3,6 +3,9 @@
     <div class="card mb-5">
         <div class="card-header bg-dark text-white">
             <div class="row">
+                <div class="col-md-4 text-center">
+                    <button class="btn btn-primary d-inline mr-2" (click)=goB()>Atras</button>
+                </div>
                 <div class="col-md-4">
                     <h5 class="text-center"><b>Tipo de Orden: </b><span class="badge mt-2"
                             [ngClass]="{'badge-primary': orden.tipo_orden == 'Soporte', 'badge-warning': orden.tipo_orden == 'Inspección', 'badge-info': orden.tipo_orden == 'Instalación'}">{{orden.tipo_orden}}</span>

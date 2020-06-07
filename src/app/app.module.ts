@@ -52,6 +52,7 @@ const routes: Routes = [
   { path: 'ordenes/edit/:id', component: EditarOrdenComponent, canActivate: [guard], data: { expectedRol: ['admin']}},
   { path: 'ordenes/listar', component: ListarOrdenesComponent, canActivate: [guard], data: { expectedRol: ['admin', 'user']} },
   { path: 'ordenes/listar/:user', component: ListarOrdenesComponent, canActivate: [guard], data: { expectedRol: ['admin', 'user']} },
+  { path: 'ordenes/listar/popo/:id', component: ListarOrdenesComponent, canActivate: [guard], data: { expectedRol: ['admin', 'user']} },
   { path: 'ordenes/info/:id', component: DetalleAdminComponent, canActivate: [guard], data: { expectedRol: ['admin']}},
   { path: 'ordenes/detalle/:id', component: DetalleOrdenComponent, canActivate: [guard], data: { expectedRol: ['user']}},
   { path: 'ordenes/doin/:id', component: DoinOrdenComponent, canActivate: [guard], data: { expectedRol: ['user']} },

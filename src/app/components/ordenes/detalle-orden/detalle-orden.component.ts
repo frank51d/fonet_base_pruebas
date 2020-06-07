@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router'
 import { MaterialesService } from '../../../services/materiales.service';
-import { DatePipe } from '@angular/common';
+import { DatePipe, Location } from '@angular/common';
 
 @Component({
   selector: 'app-detalle-orden',
@@ -20,7 +20,8 @@ export class DetalleOrdenComponent implements OnInit {
     private _servicio: MaterialesService,
     private route: Router,
     private activedRouter : ActivatedRoute,
-    private _dates: DatePipe
+    private _dates: DatePipe,
+    private _location: Location
     ) { }
 
   ngOnInit() {
@@ -51,6 +52,10 @@ export class DetalleOrdenComponent implements OnInit {
         },
         err => console.error(err)
       )
+  }
+
+  goB(){
+    this._location.back();
   }
 
 }

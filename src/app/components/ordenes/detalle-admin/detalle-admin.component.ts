@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router'
 import { MaterialesService } from '../../../services/materiales.service';
 import { PhotoService } from '../../../services/photo.service'
-import { DatePipe } from '@angular/common';
+import { DatePipe, Location } from '@angular/common';
+import { ComunService } from 'src/app/services/comun.service';
+import { ListarOrdenesComponent } from 'src/app/components/ordenes/listar-ordenes/listar-ordenes.component'
 
 @Component({
   selector: 'app-detalle-admin',
@@ -21,7 +23,9 @@ export class DetalleAdminComponent implements OnInit {
     private route: Router,
     private activedRouter : ActivatedRoute,
     private _dates: DatePipe,
-    private _photo: PhotoService
+    private _photo: PhotoService,
+    private _location: Location,
+    private _comun: ComunService
   ) { }
 
   ngOnInit() {
@@ -49,6 +53,7 @@ export class DetalleAdminComponent implements OnInit {
         },
         err => console.log(err)
       )
+      console.log(this._comun.p)
     } 
 
     
@@ -71,6 +76,10 @@ export class DetalleAdminComponent implements OnInit {
       },
       err => console.log(err)
     )
+  }
+
+  goB(){
+    this._location.back();
   }
 
 }

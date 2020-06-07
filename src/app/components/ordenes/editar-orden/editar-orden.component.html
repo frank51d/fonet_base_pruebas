@@ -1,15 +1,15 @@
 <app-menu></app-menu>
 <div class="container mb-5">
     <div class="card text-left">
-        <div class="card-header">
-            Editar Orden de Servicio
+        <div class="card-header bg-dark text-white">
+            <button class="btn btn-primary d-inline mr-2" (click)=goB()>Atras</button><h4 class="d-inline">Editar Orden de Servicio</h4>
         </div>
         <div class="card-body">
             <form>
                 <div class="row my-2">
                     <div class="col-md-6 text-center">
                         <label for="calendario">Fecha de Asignación</label> <br>
-                        <input class="form-control" id="calendario" type="date" class="type" name="fecha_asig"
+                        <input class="form-control" id="calendario" type="date" name="fecha_asig"
                             [(ngModel)]="ordenServicio.fecha_asig">
                     </div>
                     <div class="col-md-3">
@@ -31,9 +31,9 @@
                     <div class="col-md-4">
                         <label for="tecnicos">Técnico Asignado</label>
                         <select class="form-control" id="tecnicos" name="idusuario"
-                            [(ngModel)]="ordenServicio.idusuario">
-                            <option *ngFor="let usuario of usuarios" [ngValue]="usuario.idusuario">
-                                {{usuario.nombres_usuario}}
+                            [(ngModel)]="ordenServicio.id">
+                            <option *ngFor="let usuario of usuarios" [ngValue]="usuario.id">
+                                {{usuario.nombre}}
                             </option>
                         </select>
                     </div>

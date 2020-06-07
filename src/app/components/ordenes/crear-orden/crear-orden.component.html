@@ -46,7 +46,7 @@
             Orden de Servicio
         </div>
         <div class="card-body">
-            <form name="signup_form" (ngSubmit)="fs.form.valid && crearOrden()" #fs="ngForm" novalidate>
+            <form name="signup_form" (ngSubmit)="fs.form.valid && crearOrden()" #fs="ngForm" id="form" name="form" novalidate>
                 <div class="row my-2">
                     <div class="col-md-6">
                         <label for="today">Fecha de Asignación *</label> <br>
@@ -57,7 +57,7 @@
                         <label for="">Tipo de Orden *</label>
                         <select class="form-control" type="text" id="idtipo_orden" name="idtipo_orden"
                             [(ngModel)]="ordenServicio.idtipo_orden" #idtipo_orden="ngModel"
-                            [ngClass]="{'is-invalid': fs.submitted && ordenServicio.idtipo_orden==0}">
+                            [ngClass]="{'is-invalid': fs.submitted && ordenServicio.idtipo_orden==0}" required>
                             <option *ngFor="let tipoOrden of tipoOrdenes" [ngValue]="tipoOrden.idtipo_orden">
                                 {{tipoOrden.descripcion}}
                             </option>
@@ -83,19 +83,13 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <label for="tecnicos">Técnico Asignado *</label>
+                        <label for="tecnicos">Técnico Asignado</label>
                         <select type="text" class="form-control" name="id" id="id"
-                            [(ngModel)]="ordenServicio.id" #idusuario="ngModel"
-                            [ngClass]="{'is-invalid': fs.submitted && ordenServicio.id==0}">
+                            [(ngModel)]="ordenServicio.id" #idusuario="ngModel">
                             <option *ngFor="let usuario of usuarios" [ngValue]="usuario.id">
                                 {{usuario.nombre}}
                             </option>
-                        </select>
-                        <div *ngIf="fs.submitted && ordenServicio.id==0" class="invalid-feeback">
-                            <div style="color:red">
-                                Se debe asignar un técnico.
-                            </div>
-                        </div>
+                        </select>                       
                     </div>
                 </div>
                 <div class="row my-2">
@@ -145,12 +139,18 @@
                             [ngClass]="{'is-invalid': fs.submitted && diagnostico_inicial.invalid}"></textarea>
                     </div>
                 </div>
+                <div class="row my-3">
+                    <div class="col-md-12">
+                        <label for="te">Comentarios</label>
+                        <textarea class="form-control" name="" id="te" rows="2" cols="3" name="comentarios"
+                            id="comentarios" [(ngModel)]="ordenServicio.comentarios"
+                            #comentarios="ngModel"></textarea>
+                    </div>
+                </div>
                 <div class="card-footer text-center">
-                    <button class="btn btn-primary" type="submit">Generar Orden</button>
+                    <button type="submit" class="btn btn-primary">Generar Orden</button>
                 </div>
             </form>
         </div>
-
-
     </div>
 </div>

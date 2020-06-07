@@ -2,7 +2,7 @@
 <div class="container mb-5">
     <div class="card">
         <div class="card-header bg-dark text-white">
-            <h4>Orden #{{orden.idorden}}</h4>
+            <button class="btn btn-primary d-inline mr-2" (click)=goB()>Atras</button><h4 class="d-inline">Orden #{{orden.idorden}}</h4>
         </div>
         <div class="card-body">
             <div class="row">
@@ -18,7 +18,7 @@
                                 </div>
                                 <div class="col-md-6"><label for="">Estatus</label><br>
                                     <h4><span class="badge mt-2"
-                                            [ngClass]="{'badge-primary': orden.estatus == 'ASIGNADA', 'badge-danger': orden.estatus == 'CERRADA', 'badge-warning': orden.estatus == 'EN PROCESO'}">{{orden.estatus}}</span>
+                                            [ngClass]="{'badge-primary': orden.estatus == 'ASIGNADA', 'badge-danger': orden.estatus == 'CERRADA', 'badge-info': orden.estatus == 'EN PROCESO', 'badge-warning': orden.estatus == 'NO ASIGNADA', 'badge-dark': orden.estatus == 'ANULADA'}">{{orden.estatus}}</span>
                                     </h4>
                                 </div>
                             </div>
@@ -47,8 +47,22 @@
                             <div class="row mt-2">
                                 <div class="col-md-12">
                                     <label for="">Requerimiento</label><br>
-                                    <textarea class="form-control" cols="30" rows="10"
+                                    <textarea class="form-control" cols="30" rows="3"
                                         readonly>{{orden.diagnostico_inicial}}</textarea>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-12">
+                                    <label for="">Comentarios / Notas</label><br>
+                                    <textarea class="form-control" cols="30" rows="3"
+                                        readonly>{{orden.comentarios}}</textarea>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-12">
+                                    <label for="">Motivo de Suspensión</label><br>
+                                    <textarea class="form-control" cols="30" rows="3"
+                                        readonly>{{orden.motivo_susp}}</textarea>
                                 </div>
                             </div>
                         </div>
